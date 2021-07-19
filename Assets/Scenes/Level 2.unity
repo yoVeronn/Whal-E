@@ -217,7 +217,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 304865107}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.08, y: -0.76, z: 0}
+  m_LocalPosition: {x: -5.75, y: -2.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -261,12 +261,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1328284606}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0954d6cbe230ed4da9f7b694d012ab8, type: 3}
+  m_Script: {fileID: 11500000, guid: f1d7322d362fc1f4bb6b5c1c8982caf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Level1EnemyPrefabs:
-  - {fileID: 5458362520655613596, guid: 5b8a8b9e2bd7e9e43a7b6d8867461152, type: 3}
-  - {fileID: 2282895759811692072, guid: 27d064e18e7733447ae13fb16ba37377, type: 3}
+  LevelPrefabs:
+  - {fileID: 2472452264530351103, guid: cfc03478a9a968c4c97ec0a0409ef687, type: 3}
+  - {fileID: 4038243722157781970, guid: 34ab242a53d37474ba0e94178a59f16c, type: 3}
+  - {fileID: 5138039516724959987, guid: 5adc987c222f5714d81ed58ca5713de9, type: 3}
+  - {fileID: 4495995926024078607, guid: 1cecf8d7e769410499e1952863de24e0, type: 3}
 --- !u!4 &1328284608
 Transform:
   m_ObjectHideFlags: 0

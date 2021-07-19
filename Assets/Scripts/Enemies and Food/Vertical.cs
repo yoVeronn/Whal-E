@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyVertical : MonoBehaviour
+public class Vertical : MonoBehaviour
 {
     private float verticalSpeedMin = -8;
     private float verticalSpeedMax = -2;
@@ -17,7 +17,7 @@ public class EnemyVertical : MonoBehaviour
     // Update is called once per frame
     void Update()
     {     
-        // enemy movement
+        // object movement
         transform.Translate(Vector3.up * Time.deltaTime * Random.Range(verticalSpeedMin, verticalSpeedMax));
         //Destroy out of bounds
         if (transform.position.y < -6)
