@@ -6,13 +6,13 @@ public class PlayerControl : MonoBehaviour
 {
     private float horizontalInput;
     private float verticalInput;
-    private float playerSpeed = 5.0f;
-    private bool diveActive = false;
+    private float playerSpeed;
+    public bool diveActive = false;
 
     // Start is called before the first frame update
     void Start()
     {
-            
+        playerSpeed = 5.0f;
     }
 
     // Update is called once per frame
@@ -27,14 +27,18 @@ public class PlayerControl : MonoBehaviour
         // player bounds
 
         //dive on spacebar, cooldown of 4s
+        if (Input.GetKeyDown(KeyCode.Space) && diveActive == false)
+        {
+            Diving();
+        }
     
     }
 
-    IEnumerator DiveCountdownRoutine()
-    {
-        yield return new WaitForSeconds(4);
-        diveActive = false;
-    }
+    //IEnumerator DiveCountdownRoutine()
+    //{
+    //    yield return new WaitForSeconds(4);
+    //    diveActive = false;
+    //}
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -57,5 +61,20 @@ public class PlayerControl : MonoBehaviour
             Debug.Log("Health - 30");
             // UI: health decreases by 30
         }
+    }
+
+    void Diving()
+    {
+        playerSpeed *= 2;
+        diveActive = true;
+        StartCoroutine(DivingDuration());
+    }
+
+    IEnumerator DivingDuration()
+    {
+        yield return new WaitForSeconds(0.5f);
+        playerSpeed = 5.0f;
+        diveActive = false;
+
     }
 }
