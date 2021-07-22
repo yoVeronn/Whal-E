@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject player;
+    private float playerPosX;
+
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        
+        playerPosX = player.transform.position.x;
+        transform.position = new Vector3((player.transform.position.x + 5.5f), transform.position.y, -10);
     }
 }
