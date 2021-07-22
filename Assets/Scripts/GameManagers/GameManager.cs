@@ -1,23 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject[] LevelPrefabs;
     // UI: sound
     // UI: buttons for pause (and restart?)
+    public GameObject gameOver;
+    public bool isGameActive = false;
 
     // Start is called before the first frame update
     void Start()
     {
         SpawnEntity();
+        isGameActive = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //if player health = 0, game over
+    }
+
+    public void GameOver()
+    {
+        isGameActive = false;
+        gameOver.gameObject.SetActive(true);
     }
 
     public virtual void SpawnEntity()
