@@ -11,6 +11,9 @@ public class MenuUIHandler : MonoBehaviour
     public GameObject pauseScreen;
     public bool paused = false;
 
+    public Animator transition;
+    private float transitionTime = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +24,7 @@ public class MenuUIHandler : MonoBehaviour
     {
         paused = false;
         Time.timeScale = 1;
+        StartCoroutine(LoadLevel());
         SceneManager.LoadScene(1);
     }
 
@@ -42,6 +46,12 @@ public class MenuUIHandler : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
+    }
+
+    IEnumerator LoadLevel()
+    {
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(transitionTime);
     }
 
     public void Exit()
