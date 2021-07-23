@@ -8,8 +8,6 @@ public class GameManager : MonoBehaviour
     public GameObject[] LevelPrefabs;
     // UI: sound
     public GameObject player;
-    public GameObject gameOver;
-    public bool isGameActive = false;
 
     // public float playerHealth;
 
@@ -17,20 +15,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SpawnEntity();
-        isGameActive = true;
-        // playerHealth = 100;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if player health = 0, game over
-    }
-
-    public void GameOver()
-    {
-        isGameActive = false;
-        gameOver.gameObject.SetActive(true);
+     
     }
 
     public virtual void SpawnEntity()

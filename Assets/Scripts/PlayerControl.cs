@@ -48,6 +48,13 @@ public class PlayerControl : MonoBehaviour
         {
             Diving();
         }
+
+        // game over
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            menuUIHandler.GameOver();
+        }
     
     }
 

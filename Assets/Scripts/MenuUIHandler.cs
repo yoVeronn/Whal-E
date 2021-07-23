@@ -11,21 +11,33 @@ public class MenuUIHandler : MonoBehaviour
     public GameObject pauseScreen;
     public bool paused = false;
 
+    public GameObject gameOverScreen;
+    public bool isGameActive = false;
+
     public Animator transition;
     private float transitionTime = 1;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        isGameActive = true;
+        Time.timeScale = 1;
     }
 
     public void StartNew()
     {
+        gameOverScreen.gameObject.SetActive(false);
         paused = false;
         Time.timeScale = 1;
         StartCoroutine(LoadLevel());
         SceneManager.LoadScene(1);
+    }
+
+    public void GameOver()
+    {
+        isGameActive = false;
+        Time.timeScale = 0;
+        gameOverScreen.gameObject.SetActive(true);
     }
 
     public void LoadLevel2()
@@ -44,6 +56,7 @@ public class MenuUIHandler : MonoBehaviour
 
     public void LoadMenu()
     {
+        gameOverScreen.gameObject.SetActive(false);
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
