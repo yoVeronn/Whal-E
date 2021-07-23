@@ -15,6 +15,7 @@ public class PlayerControl : MonoBehaviour
     void Start()
     {
         playerSpeed = 5.0f;
+        menuUIHandler = GameObject.Find("Game Manager").GetComponent<MenuUIHandler>();
     }
 
     // Update is called once per frame
@@ -27,13 +28,32 @@ public class PlayerControl : MonoBehaviour
         transform.Translate(Vector3.up * verticalInput * Time.deltaTime * playerSpeed);
 
         // player bounds
+        PlayerBounds();
 
-        //dive on spacebar, cooldown of 4s
+        //dive on spacebar
         if (Input.GetKeyDown(KeyCode.Space) && diveActive == false)
         {
             Diving();
         }
     
+    }
+
+    void PlayerBounds()
+    {
+        if (transform.position.y < -4.4f)
+        {
+            transform.position = new Vector2(transform.position.x, -4.4f);
+        }
+
+        else if (transform.position.y > 4.4f)
+        {
+            transform.position = new Vector2(transform.position.x, 4.4f);
+        }
+
+        else if (transform.position.x < -8.3f)
+        {
+            transform.position = new Vector2(-8.3f, transform.position.y);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -56,6 +76,24 @@ public class PlayerControl : MonoBehaviour
         {
             Debug.Log("Health - 30");
             // UI: health decreases by 30
+        }
+
+        else if (col.gameObject.CompareTag("Checkpoint1"))
+        {
+            Debug.Log("Checkpoint");
+            menuUIHandler.LoadLevel2();
+        }
+
+        else if (col.gameObject.CompareTag("Checkpoint2"))
+        {
+            Debug.Log("Checkpoint");
+            menuUIHandler.LoadLevel3();
+        }
+
+        else if (col.gameObject.CompareTag("Checkpoint3"))
+        {
+            Debug.Log("Ending");
+            //menuUIHandler.End scene();
         }
     }
 

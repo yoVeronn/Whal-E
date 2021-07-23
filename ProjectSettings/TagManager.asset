@@ -8,6 +8,9 @@ TagManager:
   - Food
   - Ship
   - Checkpoint
+  - Checkpoint1
+  - Checkpoint2
+  - Checkpoint3
   layers:
   - Default
   - TransparentFX
