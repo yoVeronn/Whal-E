@@ -9,6 +9,8 @@ public class PlayerControl : MonoBehaviour
     private float playerSpeed;
     public bool diveActive = false;
 
+    private MenuUIHandler menuUIHandler;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,12 +35,6 @@ public class PlayerControl : MonoBehaviour
         }
     
     }
-
-    //IEnumerator DiveCountdownRoutine()
-    //{
-    //    yield return new WaitForSeconds(4);
-    //    diveActive = false;
-    //}
 
     void OnTriggerEnter2D(Collider2D col)
     {

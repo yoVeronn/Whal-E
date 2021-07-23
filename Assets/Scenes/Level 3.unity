@@ -703,6 +703,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelPrefabs:
   - {fileID: 6968203117712717469, guid: 1ea6a996d1eabb4439c11fd3d6d21594, type: 3}
+  player: {fileID: 304865107}
   gameOver: {fileID: 0}
   isGameActive: 0
 --- !u!1 &572680814
@@ -1885,8 +1886,12 @@ MonoBehaviour:
   - {fileID: 6152005431021916016, guid: 02e9427aa5518ab4995ea07a67125d5c, type: 3}
   - {fileID: 7612436855588692574, guid: a57c2a47a190eda429b8a0ef14a64103, type: 3}
   - {fileID: 5260704462726357115, guid: f66a367ac7e5de54aa972cc922745925, type: 3}
+  player: {fileID: 304865107}
   gameOver: {fileID: 0}
   isGameActive: 0
+  LevelPrefabsVertical:
+  - {fileID: 5458362520655613596, guid: 5b8a8b9e2bd7e9e43a7b6d8867461152, type: 3}
+  - {fileID: 2282895759811692072, guid: 27d064e18e7733447ae13fb16ba37377, type: 3}
 --- !u!4 &1328284608
 Transform:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager3 : GameManager
 {
+    public GameObject[] LevelPrefabsVertical;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,14 +20,22 @@ public class GameManager3 : GameManager
     public override void SpawnEntity()
     {
         float startDelay = 1.5f;
-        float repeatRate = 2.0f;
+        float repeatRate = 1.5f;
         InvokeRepeating("SpawnHorizontalEntity", startDelay, repeatRate);
+        InvokeRepeating("SpawnVerticalEntity", startDelay, repeatRate);
     }
 
     public override void SpawnHorizontalEntity()
     {
-        Vector2 spawnPos = new Vector2(10, Random.Range(-4, 3.5f));
+        Vector2 spawnPos = new Vector2((player.transform.position.x + 15), Random.Range((player.transform.position.y -4), (player.transform.position.y - 3.5f)));
         int horizontalIndex = Random.Range(0, LevelPrefabs.Length);
         Instantiate(LevelPrefabs[horizontalIndex], spawnPos, LevelPrefabs[horizontalIndex].transform.rotation);
+    }
+
+    public override void SpawnVerticalEntity()
+    {
+        Vector2 spawnPos = new Vector2(Random.Range((player.transform.position.x - 2), (player.transform.position.x + 10)), 6);
+        int verticalIndex = Random.Range(0, LevelPrefabsVertical.Length);
+        Instantiate(LevelPrefabsVertical[verticalIndex], spawnPos, LevelPrefabsVertical[verticalIndex].transform.rotation);
     }
 }

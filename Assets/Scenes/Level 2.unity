@@ -2101,6 +2101,7 @@ MonoBehaviour:
   - {fileID: 4038243722157781970, guid: 34ab242a53d37474ba0e94178a59f16c, type: 3}
   - {fileID: 5138039516724959987, guid: 5adc987c222f5714d81ed58ca5713de9, type: 3}
   - {fileID: 4495995926024078607, guid: 1cecf8d7e769410499e1952863de24e0, type: 3}
+  player: {fileID: 304865107}
   gameOver: {fileID: 0}
   isGameActive: 0
 --- !u!4 &1328284608

@@ -26,8 +26,8 @@ public class ShipManager : GameManager
 
     void SpawnShip()
     {
-        float waterLevel = 3.7f;
-        Vector2 spawnPos = new Vector2(14, Random.Range((waterLevel - 0.5f), waterLevel));
+        float waterLevel = 4.0f;
+        Vector2 spawnPos = new Vector2((player.transform.position.x + 15), Random.Range((waterLevel - 0.5f), waterLevel));
         int horizontalIndex = Random.Range(0, LevelPrefabs.Length);
         Instantiate(LevelPrefabs[horizontalIndex], spawnPos, LevelPrefabs[horizontalIndex].transform.rotation);
     }
