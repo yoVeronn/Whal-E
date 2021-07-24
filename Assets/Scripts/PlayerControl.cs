@@ -37,8 +37,13 @@ public class PlayerControl : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-        transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * playerSpeed);
-        transform.Translate(Vector3.up * verticalInput * Time.deltaTime * playerSpeed);
+        //transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * playerSpeed);
+        //transform.Translate(Vector3.up * verticalInput * Time.deltaTime * playerSpeed);
+
+        Vector2 movement = new Vector2(horizontalInput, verticalInput);
+        transform.Translate(movement * Time.deltaTime * playerSpeed);
+
+        //transform.rotation = Quaternion.LookRotation(movement);
 
         // player bounds
         PlayerBounds();
@@ -95,9 +100,9 @@ public class PlayerControl : MonoBehaviour
     {
         if (col.CompareTag("Enemy"))
         {
-            Debug.Log("Health -10");
+            Debug.Log("Health -20");
             // UI: health decreases by 10
-            currentHealth -= 10;
+            currentHealth -= 20;
             SetHealth(currentHealth);
         }
 

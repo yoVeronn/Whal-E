@@ -27,14 +27,14 @@ public class GameManager3 : GameManager
 
     public override void SpawnHorizontalEntity()
     {
-        Vector2 spawnPos = new Vector2((player.transform.position.x + 15), Random.Range((player.transform.position.y -4), (player.transform.position.y - 3.5f)));
+        Vector2 spawnPos = new Vector2((player.transform.position.x + 15), Random.Range(-4, 3.5f));
         int horizontalIndex = Random.Range(0, LevelPrefabs.Length);
         Instantiate(LevelPrefabs[horizontalIndex], spawnPos, LevelPrefabs[horizontalIndex].transform.rotation);
     }
 
     public override void SpawnVerticalEntity()
     {
-        Vector2 spawnPos = new Vector2(Random.Range((player.transform.position.x - 2), (player.transform.position.x + 10)), 6);
+        Vector2 spawnPos = new Vector2(Random.Range((player.transform.position.x - 1), (player.transform.position.x + 8)), 6);
         int verticalIndex = Random.Range(0, LevelPrefabsVertical.Length);
         Instantiate(LevelPrefabsVertical[verticalIndex], spawnPos, LevelPrefabsVertical[verticalIndex].transform.rotation);
     }
