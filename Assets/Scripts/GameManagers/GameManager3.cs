@@ -19,7 +19,7 @@ public class GameManager3 : GameManager
 
     public override void SpawnEntity()
     {
-        float startDelay = 1.5f;
+        float startDelay = 2.0f;
         float repeatRate = 1.5f;
         InvokeRepeating("SpawnHorizontalEntity", startDelay, repeatRate);
         InvokeRepeating("SpawnVerticalEntity", startDelay, repeatRate);
