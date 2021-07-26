@@ -17,6 +17,7 @@ public class MenuUIHandler : MonoBehaviour
     public Animator transition;
     private float transitionTime = 1;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +32,7 @@ public class MenuUIHandler : MonoBehaviour
         Time.timeScale = 1;
         StartCoroutine(LoadLevel());
         SceneManager.LoadScene(1);
+        GameStatus.health = 100;
     }
 
     public void GameOver()

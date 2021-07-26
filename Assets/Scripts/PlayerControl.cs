@@ -27,13 +27,16 @@ public class PlayerControl : MonoBehaviour
         menuUIHandler = GameObject.Find("Game Manager").GetComponent<MenuUIHandler>();
 
         slider = healthBar.GetComponent<Slider>();
-        currentHealth = maxHealth;
+
+        currentHealth = GameStatus.health;
         SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
     void Update()
     {
+        currentHealth = GameStatus.health;
+
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
@@ -91,9 +94,9 @@ public class PlayerControl : MonoBehaviour
     public void SetMaxHealth(int health)
     {
         slider.maxValue = health;
-        slider.value = health;
+        slider.value = GameStatus.health;
 
-        fill.color = healthBarGradient.Evaluate(1);
+        fill.color = healthBarGradient.Evaluate(slider.normalizedValue);
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -101,27 +104,28 @@ public class PlayerControl : MonoBehaviour
         if (col.CompareTag("Enemy"))
         {
             Debug.Log("Health -20");
-            // UI: health decreases by 10
-            currentHealth -= 20;
-            SetHealth(currentHealth);
+            //health decreases by 10
+            GameStatus.health -= 20;
+            SetHealth(GameStatus.health);
+            //SFX: enemy collision SFX
         }
 
         else if (col.gameObject.CompareTag("Food"))
         {
             Debug.Log("Health +5");
             Destroy(col.gameObject);
-            // UI: health increases by 5
-            currentHealth += 5;
-            SetHealth(currentHealth);
+            //health increases by 5
+            GameStatus.health += 5;
+            SetHealth(GameStatus.health);
             // SFX: eating SFX
         }
 
         else if (col.gameObject.CompareTag("Ship"))
         {
             Debug.Log("Health - 30");
-            // UI: health decreases by 30
-            currentHealth -= 30;
-            SetHealth(currentHealth);
+            //health decreases by 30
+            GameStatus.health -= 30;
+            SetHealth(GameStatus.health);
         }
 
         else if (col.gameObject.CompareTag("Checkpoint1"))
