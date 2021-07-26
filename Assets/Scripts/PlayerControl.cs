@@ -130,18 +130,21 @@ public class PlayerControl : MonoBehaviour
 
         else if (col.gameObject.CompareTag("Checkpoint1"))
         {
+            Destroy(col.gameObject);
             Debug.Log("Checkpoint");
             menuUIHandler.LoadLevel2();
         }
 
         else if (col.gameObject.CompareTag("Checkpoint2"))
         {
+            Destroy(col.gameObject);
             Debug.Log("Checkpoint");
             menuUIHandler.LoadLevel3();
         }
 
         else if (col.gameObject.CompareTag("Checkpoint3"))
         {
+            Destroy(col.gameObject);
             Debug.Log("Ending");
             //menuUIHandler.End scene();
         }
