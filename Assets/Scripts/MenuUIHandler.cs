@@ -14,8 +14,10 @@ public class MenuUIHandler : MonoBehaviour
     public GameObject gameOverScreen;
     public bool isGameActive = false;
 
+    public GameObject EndScreen;
+
     public Animator transition;
-    private float transitionTime = 1;
+    private float transitionTime = 2;
 
 
     // Start is called before the first frame update
@@ -25,14 +27,42 @@ public class MenuUIHandler : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void StartNew()
+    public void LoadNextLevel()
     {
-        gameOverScreen.gameObject.SetActive(false);
-        paused = false;
         Time.timeScale = 1;
-        StartCoroutine(LoadLevel());
-        SceneManager.LoadScene(1);
-        GameStatus.health = 100;
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex +1));
+    }
+
+    public void Restart()
+    {
+        Time.timeScale = 1;
+        gameOverScreen.gameObject.SetActive(false);
+
+        StartCoroutine(LoadLevel(1));
+    }
+
+    public void LoadMenu()
+    {
+        Time.timeScale = 1;
+        gameOverScreen.gameObject.SetActive(false);
+
+        isGameActive = true;
+        StartCoroutine(LoadLevel(0));
+    }
+
+    IEnumerator LoadLevel(int SceneIndex)
+    {
+        Time.timeScale = 1;
+        transition.SetTrigger("Start");
+        yield return new WaitForSeconds(transitionTime);
+        SceneManager.LoadScene(SceneIndex);
+        
+        paused = false;
+
+        if (SceneIndex == 1)
+        {
+            GameStatus.health = 100;
+        }
     }
 
     public void GameOver()
@@ -40,33 +70,6 @@ public class MenuUIHandler : MonoBehaviour
         isGameActive = false;
         Time.timeScale = 0;
         gameOverScreen.gameObject.SetActive(true);
-    }
-
-    public void LoadLevel2()
-    {
-        paused = false;
-        Time.timeScale = 1;
-        SceneManager.LoadScene(2);
-    }
-
-    public void LoadLevel3()
-    {
-        paused = false;
-        Time.timeScale = 1;
-        SceneManager.LoadScene(3);
-    }
-
-    public void LoadMenu()
-    {
-        gameOverScreen.gameObject.SetActive(false);
-        Time.timeScale = 1;
-        SceneManager.LoadScene(0);
-    }
-
-    IEnumerator LoadLevel()
-    {
-        transition.SetTrigger("Start");
-        yield return new WaitForSeconds(transitionTime);
     }
 
     public void Exit()
@@ -78,9 +81,9 @@ public class MenuUIHandler : MonoBehaviour
 #endif
     }
 
-    void ChangePause()
+    public void ChangePause()
     {
-        if (!paused)
+        if (!paused) //isGameActive == true;
         {
             paused = true;
             pauseScreen.SetActive(true);
@@ -92,6 +95,12 @@ public class MenuUIHandler : MonoBehaviour
             pauseScreen.SetActive(false);
             Time.timeScale = 1;
         }
+    }
+
+    public void TheEnd()
+    {
+        EndScreen.SetActive(true);
+        Time.timeScale = 0;
     }
 
     // Update is called once per frame

@@ -132,21 +132,22 @@ public class PlayerControl : MonoBehaviour
         {
             Destroy(col.gameObject);
             Debug.Log("Checkpoint");
-            menuUIHandler.LoadLevel2();
+           // Time.timeScale = 0;
+            menuUIHandler.LoadNextLevel();
         }
 
         else if (col.gameObject.CompareTag("Checkpoint2"))
         {
             Destroy(col.gameObject);
             Debug.Log("Checkpoint");
-            menuUIHandler.LoadLevel3();
+            menuUIHandler.LoadNextLevel();
         }
 
         else if (col.gameObject.CompareTag("Checkpoint3"))
         {
             Destroy(col.gameObject);
             Debug.Log("Ending");
-            //menuUIHandler.End scene();
+            menuUIHandler.TheEnd();
         }
     }
 
