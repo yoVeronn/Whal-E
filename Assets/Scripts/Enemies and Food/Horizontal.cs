@@ -6,12 +6,11 @@ public class Horizontal : MonoBehaviour
 {
     //private float horizontalSpeedMin;
     //private float horizontalSpeedMax;
-    private Transform playerTransform;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerTransform = GameObject.Find("Player").GetComponent<Transform>();
+        
         // UI: any SFX?
     }
 
@@ -34,7 +33,7 @@ public class Horizontal : MonoBehaviour
     public void DestroyOutofBounds()
     {
         //Destroy out of bounds
-        if (transform.position.x < playerTransform.position.x -20)
+        if (transform.position.x < -10)
         {
             Destroy(gameObject);
         }

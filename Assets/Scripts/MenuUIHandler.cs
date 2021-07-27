@@ -68,7 +68,7 @@ public class MenuUIHandler : MonoBehaviour
     public void GameOver()
     {
         isGameActive = false;
-        Time.timeScale = 0;
+       // Time.timeScale = 0;
         gameOverScreen.gameObject.SetActive(true);
     }
 
@@ -83,7 +83,7 @@ public class MenuUIHandler : MonoBehaviour
 
     public void ChangePause()
     {
-        if (!paused) //isGameActive == true;
+        if (!paused) //&&isGameActive == true;
         {
             paused = true;
             pauseScreen.SetActive(true);
