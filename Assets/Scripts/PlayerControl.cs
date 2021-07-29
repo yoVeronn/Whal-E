@@ -9,6 +9,7 @@ public class PlayerControl : MonoBehaviour
     private float verticalInput;
     private float playerSpeed;
     public bool diveActive = false;
+    private bool isGameActive = true;
 
     private MenuUIHandler menuUIHandler;
     public int maxHealth = 100;
@@ -111,7 +112,7 @@ public class PlayerControl : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("Enemy"))
+        if (col.CompareTag("Enemy") && isGameActive)
         {
             Debug.Log("Health -20");
             //health decreases by 10
@@ -121,7 +122,7 @@ public class PlayerControl : MonoBehaviour
             playerAudio.PlayOneShot(collisionSound, 0.8f);
         }
 
-        else if (col.gameObject.CompareTag("Food"))
+        else if (col.gameObject.CompareTag("Food") && isGameActive)
         {
             Debug.Log("Health +5");
             Destroy(col.gameObject);
@@ -132,7 +133,7 @@ public class PlayerControl : MonoBehaviour
             playerAudio.PlayOneShot(eatingSound, 0.3f);
         }
 
-        else if (col.gameObject.CompareTag("Ship"))
+        else if (col.gameObject.CompareTag("Ship") && isGameActive)
         {
             Debug.Log("Health - 30");
             //health decreases by 30
@@ -145,7 +146,7 @@ public class PlayerControl : MonoBehaviour
         {
             Destroy(col.gameObject);
             Debug.Log("Checkpoint");
-           // Time.timeScale = 0;
+            isGameActive = false;
             menuUIHandler.LoadNextLevel();
 
             playerAudio.PlayOneShot(checkpointSound, 0.6f);
@@ -155,6 +156,7 @@ public class PlayerControl : MonoBehaviour
         {
             Destroy(col.gameObject);
             Debug.Log("Checkpoint");
+            isGameActive = false;
             menuUIHandler.LoadNextLevel();
             
             playerAudio.PlayOneShot(checkpointSound, 0.8f);
@@ -164,6 +166,7 @@ public class PlayerControl : MonoBehaviour
         {
             Destroy(col.gameObject);
             Debug.Log("Ending");
+            isGameActive = false;
             menuUIHandler.TheEnd();
 
             playerAudio.PlayOneShot(checkpointSound, 0.8f);
