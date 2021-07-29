@@ -19,6 +19,13 @@ public class PlayerControl : MonoBehaviour
     public Gradient healthBarGradient;
     public Image fill;
 
+    private AudioSource playerAudio;
+    public AudioClip dashSound;
+    public AudioClip collisionSound;
+    public AudioClip eatingSound;
+    public AudioClip shipSound;
+    public AudioClip checkpointSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +37,8 @@ public class PlayerControl : MonoBehaviour
 
         currentHealth = GameStatus.health;
         SetMaxHealth(maxHealth);
+
+        playerAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -54,6 +63,7 @@ public class PlayerControl : MonoBehaviour
         //dive on spacebar
         if (Input.GetKeyDown(KeyCode.Space) && diveActive == false)
         {
+            playerAudio.PlayOneShot(dashSound, 0.8f);
             Diving();
         }
 
@@ -108,6 +118,7 @@ public class PlayerControl : MonoBehaviour
             GameStatus.health -= 20;
             SetHealth(GameStatus.health);
             //SFX: enemy collision SFX
+            playerAudio.PlayOneShot(collisionSound, 0.8f);
         }
 
         else if (col.gameObject.CompareTag("Food"))
@@ -118,6 +129,7 @@ public class PlayerControl : MonoBehaviour
             GameStatus.health += 5;
             SetHealth(GameStatus.health);
             // SFX: eating SFX
+            playerAudio.PlayOneShot(eatingSound, 0.3f);
         }
 
         else if (col.gameObject.CompareTag("Ship"))
@@ -126,6 +138,7 @@ public class PlayerControl : MonoBehaviour
             //health decreases by 30
             GameStatus.health -= 30;
             SetHealth(GameStatus.health);
+            playerAudio.PlayOneShot(shipSound, 0.8f);
         }
 
         else if (col.gameObject.CompareTag("Checkpoint1"))
@@ -134,6 +147,8 @@ public class PlayerControl : MonoBehaviour
             Debug.Log("Checkpoint");
            // Time.timeScale = 0;
             menuUIHandler.LoadNextLevel();
+
+            playerAudio.PlayOneShot(checkpointSound, 0.6f);
         }
 
         else if (col.gameObject.CompareTag("Checkpoint2"))
@@ -141,6 +156,8 @@ public class PlayerControl : MonoBehaviour
             Destroy(col.gameObject);
             Debug.Log("Checkpoint");
             menuUIHandler.LoadNextLevel();
+            
+            playerAudio.PlayOneShot(checkpointSound, 0.8f);
         }
 
         else if (col.gameObject.CompareTag("Checkpoint3"))
@@ -148,6 +165,8 @@ public class PlayerControl : MonoBehaviour
             Destroy(col.gameObject);
             Debug.Log("Ending");
             menuUIHandler.TheEnd();
+
+            playerAudio.PlayOneShot(checkpointSound, 0.8f);
         }
     }
 

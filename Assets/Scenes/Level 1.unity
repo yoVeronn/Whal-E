@@ -656,6 +656,11 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   fill: {fileID: 1772001380}
+  dashSound: {fileID: 8300000, guid: 9768d2ff91575544dba4f1957384e0d6, type: 3}
+  collisionSound: {fileID: 8300000, guid: 88fe35c853a9a234a8f0ec2d7a020c57, type: 3}
+  eatingSound: {fileID: 8300000, guid: 298cfa994886588439664d868d9cec3e, type: 3}
+  shipSound: {fileID: 8300000, guid: b9906ee14d020024fa126de976916d4c, type: 3}
+  checkpointSound: {fileID: 8300000, guid: 7b008ade6d253e44c942a1c590273e6a, type: 3}
 --- !u!82 &304865112
 AudioSource:
   m_ObjectHideFlags: 0
@@ -666,8 +671,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9768d2ff91575544dba4f1957384e0d6, type: 3}
-  m_PlayOnAwake: 0
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
