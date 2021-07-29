@@ -15,6 +15,9 @@ public class GameStatus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (health >= 100)
+        {
+            health = 100;
+        }
     }
 }

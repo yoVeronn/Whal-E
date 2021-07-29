@@ -72,7 +72,13 @@ public class PlayerControl : MonoBehaviour
         if (currentHealth <= 0)
         {
             currentHealth = 0;
+            isGameActive = false;
             menuUIHandler.GameOver();
+        }
+
+        if (currentHealth >= 100)
+        {
+            currentHealth = 100;
         }
     
     }
