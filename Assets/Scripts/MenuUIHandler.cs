@@ -8,13 +8,13 @@ using UnityEditor;
 
 public class MenuUIHandler : MonoBehaviour
 {
-    public GameObject pauseScreen;
     public bool paused = false;
+    public GameObject pauseScreen;
 
     public GameObject gameOverScreen;
-    public bool isGameActive = false;
-
     public GameObject EndScreen;
+
+    public static bool isGameActive = false;
 
     public Animator transition;
     private float transitionTime = 2;
@@ -23,7 +23,6 @@ public class MenuUIHandler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isGameActive = true;
         Time.timeScale = 1;
     }
 
@@ -46,7 +45,6 @@ public class MenuUIHandler : MonoBehaviour
         Time.timeScale = 1;
         gameOverScreen.gameObject.SetActive(false);
 
-        isGameActive = true;
         StartCoroutine(LoadLevel(0));
     }
 
@@ -56,6 +54,7 @@ public class MenuUIHandler : MonoBehaviour
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(SceneIndex);
+        isGameActive = true;
         
         paused = false;
 
@@ -67,8 +66,6 @@ public class MenuUIHandler : MonoBehaviour
 
     public void GameOver()
     {
-        isGameActive = false;
-       // Time.timeScale = 0;
         gameOverScreen.gameObject.SetActive(true);
     }
 

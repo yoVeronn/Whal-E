@@ -9,7 +9,7 @@ public class PlayerControl : MonoBehaviour
     private float verticalInput;
     private float playerSpeed;
     public bool diveActive = false;
-    private bool isGameActive = true;
+    public static bool isGameActive = false;
 
     private MenuUIHandler menuUIHandler;
     public int maxHealth = 100;
@@ -30,6 +30,8 @@ public class PlayerControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isGameActive = true; 
+
         playerSpeed = 5.0f;
 
         menuUIHandler = GameObject.Find("Game Manager").GetComponent<MenuUIHandler>();
@@ -45,21 +47,25 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentHealth = GameStatus.health;
+        PlayerMovement();
 
+        UpdateHealth();
+
+        PlayerBounds();
+
+        GameOverConditions();
+    
+    }
+
+    void PlayerMovement()
+    {
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
-
-        //transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * playerSpeed);
-        //transform.Translate(Vector3.up * verticalInput * Time.deltaTime * playerSpeed);
 
         Vector2 movement = new Vector2(horizontalInput, verticalInput);
         transform.Translate(movement * Time.deltaTime * playerSpeed);
 
         //transform.rotation = Quaternion.LookRotation(movement);
-
-        // player bounds
-        PlayerBounds();
 
         //dive on spacebar
         if (Input.GetKeyDown(KeyCode.Space) && diveActive == false)
@@ -67,8 +73,20 @@ public class PlayerControl : MonoBehaviour
             playerAudio.PlayOneShot(dashSound, 0.8f);
             Diving();
         }
+    }
 
-        // game over
+    void UpdateHealth()
+    {
+        currentHealth = GameStatus.health;
+
+        if (currentHealth >= 100)
+        {
+            currentHealth = 100;
+        }
+    }
+
+    void GameOverConditions()
+    {
         if (currentHealth <= 0)
         {
             currentHealth = 0;
@@ -76,11 +94,12 @@ public class PlayerControl : MonoBehaviour
             menuUIHandler.GameOver();
         }
 
-        if (currentHealth >= 100)
+        if (O2Bar.currentO2 <= 0)
         {
-            currentHealth = 100;
+            isGameActive = false;
+            menuUIHandler.GameOver();
         }
-    
+
     }
 
     void PlayerBounds()
