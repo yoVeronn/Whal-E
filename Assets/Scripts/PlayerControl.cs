@@ -144,7 +144,7 @@ public class PlayerControl : MonoBehaviour
             GameStatus.health -= 20;
             SetHealth(GameStatus.health);
             //SFX: enemy collision SFX
-            playerAudio.PlayOneShot(collisionSound, 0.8f);
+            playerAudio.PlayOneShot(collisionSound, 1f);
         }
 
         else if (col.gameObject.CompareTag("Food") && isGameActive)
@@ -155,7 +155,7 @@ public class PlayerControl : MonoBehaviour
             GameStatus.health += 5;
             SetHealth(GameStatus.health);
             // SFX: eating SFX
-            playerAudio.PlayOneShot(eatingSound, 0.3f);
+            playerAudio.PlayOneShot(eatingSound, 0.2f);
         }
 
         else if (col.gameObject.CompareTag("Ship") && isGameActive)

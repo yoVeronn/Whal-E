@@ -32,7 +32,7 @@ public class O2Bar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (MenuUIHandler.isGameActive == true)
+        if (MenuUIHandler.isGameActive && PlayerControl.isGameActive)
         {
             StartCoroutine(LevelLoadingTime());
         }
@@ -47,17 +47,17 @@ public class O2Bar : MonoBehaviour
 
     public void UpdateOxygen()
     {
-        if (player.transform.position.y > 3f)
+        if (player.transform.position.y > 2.5f)
         {
             currentO2 += fastO2Gain * Time.deltaTime;
         }
 
-        if (player.transform.position.y <=3f && player.transform.position.y > 2f)
+        if (player.transform.position.y <=2.5f && player.transform.position.y > 1f)
         {
             currentO2 += slowO2Gain * Time.deltaTime;
         }
 
-        if (player.transform.position.y <= 2f && player.transform.position.y > -2)
+        if (player.transform.position.y <= 1f && player.transform.position.y > -2)
         {
             currentO2 -= slowO2Loss * Time.deltaTime;
         }
