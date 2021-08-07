@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     public virtual void SpawnHorizontalEntity()
     {
-        Vector2 spawnPos = new Vector2(player.transform.position.x + 15, Random.Range(- 4, 4));
+        Vector2 spawnPos = new Vector2(player.transform.position.x + 20, Random.Range(- 4, 4));
         int horizontalIndex = Random.Range(0, LevelPrefabs.Length);
         Instantiate(LevelPrefabs[horizontalIndex], spawnPos, LevelPrefabs[horizontalIndex].transform.rotation);
     }

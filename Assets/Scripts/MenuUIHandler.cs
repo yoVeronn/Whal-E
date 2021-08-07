@@ -37,7 +37,14 @@ public class MenuUIHandler : MonoBehaviour
         Time.timeScale = 1;
         gameOverScreen.gameObject.SetActive(false);
 
-        StartCoroutine(LoadLevel(1));
+        // start from the same level as death
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex));
+
+        if (SceneManager.GetActiveScene().buildIndex != 1)
+        {
+            GameStatus.health = GameStatus.startingHealth;
+            // rewind to that health value when level needs to be replayed.
+        }
     }
 
     public void LoadMenu()
@@ -55,7 +62,7 @@ public class MenuUIHandler : MonoBehaviour
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(SceneIndex);
         isGameActive = true;
-        
+
         paused = false;
 
         if (SceneIndex == 1)
